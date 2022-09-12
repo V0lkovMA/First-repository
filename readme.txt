@@ -1,0 +1,1 @@
+Programm gets user's name and favourite film and saves to data.txt.
