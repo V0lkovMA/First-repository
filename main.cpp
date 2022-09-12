@@ -5,10 +5,10 @@ using namespace std;
 
 int main() {
     // get user's data
-    string name, surname, film;
-    cin >> name >> surname >> film;
+    string name, surname, book;
+    cin >> name >> surname >> book;
 
     // save to data.txt
     ofstream fout("data.txt", ios::app);
-    fout << name << " " << surname << " " << film << "\n";
+    fout << name << " " << surname << " " << book << "\n";
 }
