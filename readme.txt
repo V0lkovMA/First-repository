@@ -1,1 +1,1 @@
-Programm gets user's name and favourite film and saves to data.txt.
+Programm gets user's name and favourite book and saves to data.txt.
