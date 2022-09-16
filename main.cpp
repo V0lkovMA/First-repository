@@ -3,6 +3,18 @@
 
 using namespace std;
 
+// print data
+
+void print() {
+    // open file
+    ifstream fin("data.txt");
+    string s;
+
+    // output
+    while (getline(fin, s))
+        cout << s << "\n";
+}
+
 int main() {
     // get user's data
     string name, surname, book;
