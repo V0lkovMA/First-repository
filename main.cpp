@@ -15,12 +15,29 @@ void print() {
         cout << s << "\n";
 }
 
-int main() {
-    // get user's data
-    string name, surname, book;
-    cin >> name >> surname >> book;
+// add new user
 
-    // save to data.txt
+void add() {
+    // open files
+    ifstream fin("questions.txt");
     ofstream fout("data.txt", ios::app);
-    fout << name << " " << surname << " " << book << "\n";
+    string q, s;
+
+    // ask and add answers
+    while (getline(fin, q)) {
+        cout << q << "\n";
+        cin >> s;
+        fout << s << " ";
+    }
+    fout << "\n";
+}
+
+int main() {
+    cout << "Enter 'add' to add user, 'print' to get data\n";
+    string s;
+    cin >> s;
+    if (s == "add")
+        add();
+    else if (s == "print")
+        print();
 }
