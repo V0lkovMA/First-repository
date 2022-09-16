@@ -33,6 +33,11 @@ void add() {
 }
 
 int main() {
-    add();
-    //print();
+    cout << "Enter 'add' to add user, 'print' to get data\n";
+    string s;
+    cin >> s;
+    if (s == "add")
+        add();
+    else if (s == "print")
+        print();
 }
