@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <unordered_map>
 
 using namespace std;
 
@@ -11,9 +12,30 @@ void print() {
     string s;
 
     // output
+    int cnt = 0;
+    unordered_map<string, int> books;
+
     cout << "Name:  Surname:  Book:\n";
-    while (getline(fin, s))
+    while (getline(fin, s)) {
+        ++cnt;
+
+        int it = s.rfind(' ', s.size() - 2);
+        string book = s.substr(it + 1, s.size() - it - 1);
+        if (!books.count(book))
+            books[book] = 0;
+        ++books[book];
+
         cout << s << "\n";
+    }
+    cout << "\nUser's count: " << cnt << "\n";
+    string best_book;
+    int votes = 0;
+    for (auto& [book, votes_] : books)
+        if (votes < votes_) {
+            votes = votes_;
+            best_book = book;
+        }
+    cout << "The most popular book: " << best_book << "\n";
 }
 
 // add new user
