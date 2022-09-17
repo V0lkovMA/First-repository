@@ -11,6 +11,7 @@ void print() {
     string s;
 
     // output
+    cout << "Name:  Surname:  Book:\n";
     while (getline(fin, s))
         cout << s << "\n";
 }
