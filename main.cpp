@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -24,7 +25,12 @@ void print(int width) {
         cout << " ";
     cout << "\n";
 
+    int cnt = 0;
+    unordered_map<string, int> books;
+
     while (getline(fin, s)) {
+        ++cnt;
+
         int it = 0;
         vector<string> v;
         while (it < s.size()) {
@@ -32,6 +38,12 @@ void print(int width) {
             v.push_back(s.substr(it, next - it));
             it = next + 1;
         }
+
+        string book = v.back();
+        if (!books.count(book))
+            books[book] = 0;
+        ++books[book];
+
         for (auto& t : v) {
             while (t.size() < width)
                 t += ' ';
@@ -39,6 +51,15 @@ void print(int width) {
         }
         cout << "\n";
     }
+    cout << "\nUser's count: " << cnt << "\n";
+    string best_book;
+    int votes = 0;
+    for (auto& [book, votes_] : books)
+        if (votes < votes_) {
+            votes = votes_;
+            best_book = book;
+        }
+    cout << "The most popular book: " << best_book << "\n";
 }
 
 // add new user
