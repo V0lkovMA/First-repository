@@ -1,19 +1,44 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
 // print data
 
-void print() {
+void print(int width) {
+    width = max(width, 8);
     // open file
     ifstream fin("data.txt");
     string s;
 
     // output
-    cout << "Name:  Surname:  Book:\n";
-    while (getline(fin, s))
-        cout << s << "\n";
+    cout << "Name:";
+    for (int i = 5; i < width; ++i)
+        cout << " ";
+    cout << "Surname:";
+    for (int i = 8; i < width; ++i)
+        cout << " ";
+    cout << "Book:";
+    for (int i = 5; i < width; ++i)
+        cout << " ";
+    cout << "\n";
+
+    while (getline(fin, s)) {
+        int it = 0;
+        vector<string> v;
+        while (it < s.size()) {
+            int next = s.find(' ', it);
+            v.push_back(s.substr(it, next - it));
+            it = next + 1;
+        }
+        for (auto& t : v) {
+            while (t.size() < width)
+                t += ' ';
+            cout << t;
+        }
+        cout << "\n";
+    }
 }
 
 // add new user
@@ -39,6 +64,10 @@ int main() {
     cin >> s;
     if (s == "add")
         add();
-    else if (s == "print")
-        print();
+    else if (s == "print") {
+        cout << "Enter table width\n";
+        int width;
+        cin >> width;
+        print(width);
+    }
 }
