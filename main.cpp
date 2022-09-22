@@ -14,16 +14,6 @@ void print(int width) {
     string s;
 
     // output
-    cout << "Name:";
-    for (int i = 5; i < width; ++i)
-        cout << " ";
-    cout << "Surname:";
-    for (int i = 8; i < width; ++i)
-        cout << " ";
-    cout << "Book:";
-    for (int i = 5; i < width; ++i)
-        cout << " ";
-    cout << "\n";
 
     int cnt = 0;
     unordered_map<string, int> books;
@@ -73,7 +63,7 @@ void add() {
     // ask and add answers
     while (getline(fin, q)) {
         cout << q << "\n";
-        cin >> s;
+        getline(cin, s);
         fout << s << " ";
     }
     fout << "\n";
