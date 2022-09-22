@@ -7,6 +7,22 @@ using namespace std;
 
 // print data
 
+void rewrite_questions() {
+    cout << "Enter the amount of questions you want in your questionnaire\n";
+    int amount;
+    cin >> amount;
+    ofstream output("questions.txt"), answer("data.txt");
+    answer << "";
+    string question;
+    getline(cin, question);
+    for (int i = 0; i < amount; i++) {
+        getline(cin, question);
+        output << question << "\n";
+    }
+    output.close();
+    answer.close();
+}
+
 void print(int width) {
     width = max(width, 8);
     // open file
@@ -14,16 +30,6 @@ void print(int width) {
     string s;
 
     // output
-    cout << "Name:";
-    for (int i = 5; i < width; ++i)
-        cout << " ";
-    cout << "Surname:";
-    for (int i = 8; i < width; ++i)
-        cout << " ";
-    cout << "Book:";
-    for (int i = 5; i < width; ++i)
-        cout << " ";
-    cout << "\n";
 
     int cnt = 0;
     unordered_map<string, int> books;
@@ -54,11 +60,14 @@ void print(int width) {
     cout << "\nUser's count: " << cnt << "\n";
     string best_book;
     int votes = 0;
-    for (auto& [book, votes_] : books)
+    for (auto& cur : books) {
+        string book = cur.first;
+        int votes_ = cur.second;
         if (votes < votes_) {
             votes = votes_;
             best_book = book;
         }
+    }
     cout << "The most popular book: " << best_book << "\n";
 }
 
@@ -80,7 +89,7 @@ void add() {
 }
 
 int main() {
-    cout << "Enter 'add' to add user, 'print' to get data\n";
+    cout << "Enter 'add' to add user, 'print' to get data, 'questions' to rewrite the list of questions\n";
     string s;
     cin >> s;
     if (s == "add")
@@ -90,5 +99,8 @@ int main() {
         int width;
         cin >> width;
         print(width);
+    }
+    else if (s == "questions") {
+        rewrite_questions();
     }
 }
