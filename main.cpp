@@ -5,6 +5,8 @@
 
 using namespace std;
 
+const char SEP = '#';
+
 // print data
 
 void rewrite_questions() {
@@ -40,7 +42,7 @@ void print(int width) {
         int it = 0;
         vector<string> v;
         while (it < s.size()) {
-            int next = s.find(' ', it);
+            int next = s.find(SEP, it);
             v.push_back(s.substr(it, next - it));
             it = next + 1;
         }
@@ -74,6 +76,8 @@ void print(int width) {
 // add new user
 
 void add() {
+    string musorka;
+    getline(cin, musorka);
     // open files
     ifstream fin("questions.txt");
     ofstream fout("data.txt", ios::app);
@@ -83,7 +87,7 @@ void add() {
     while (getline(fin, q)) {
         cout << q << "\n";
         getline(cin, s);
-        fout << s << " ";
+        fout << s << SEP;
     }
     fout << "\n";
 }
