@@ -82,7 +82,7 @@ void add() {
     // ask and add answers
     while (getline(fin, q)) {
         cout << q << "\n";
-        cin >> s;
+        getline(cin, s);
         fout << s << " ";
     }
     fout << "\n";
